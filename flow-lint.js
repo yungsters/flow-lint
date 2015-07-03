@@ -42,11 +42,19 @@ FS.listTree(path, function(path) {
         return 0;
       }
     });
-  if (issues.length === 0) {
-    console.log('No unused Flow types found.\n');
+
+  var unusedCount = issues.reduce(function(count, issue) {
+    return count + Object.keys(issue.unused).length;
+  }, 0);
+  console.log(
+    'Found %d unused Flow type%s.\n',
+    unusedCount,
+    unusedCount === 1 ? '' : 's'
+  );
+  if (unusedCount === 0) {
     return;
   }
-  console.log('Found unused Flow types!\n');
+
   issues.map(function(issue) {
     console.log(issue.path.yellow);
     console.log(Object.keys(issue.unused).map(function(type) {
