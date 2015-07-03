@@ -3,7 +3,7 @@
 var FS = require('q-io/fs');
 var Q = require('q');
 
-var colors = require('colors');
+require('colors');
 
 var path = process.argv[2] || process.cwd();
 
@@ -35,7 +35,7 @@ FS.listTree(path, function(path) {
   if (issues.length === 0) {
     return;
   }
-  console.log('Found unused types in the following files:\n'.red)
+  console.log('Found unused types in the following files:\n'.red);
   issues.map(function(issue) {
     console.log(issue.path.yellow);
     console.log(issue.unused.map(function(type) {
@@ -44,7 +44,7 @@ FS.listTree(path, function(path) {
   });
 });
 
-function lintContent(content, path) {
+function lintContent(content) {
   var types = {};
 
   if (content.indexOf('@flow') >= 0) {
