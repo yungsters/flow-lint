@@ -13,5 +13,5 @@ npm install
 Lints all JavaScript files recursively found in `<path>`.
 
 ```bash
-flow-lint <path>
+./flow-lint.js <path>
 ```
